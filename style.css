@@ -1,0 +1,190 @@
+/* ---------- Base ---------- */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;500;600&display=swap");
+
+:root {
+  --tinta: #12233f;       /* azul escuro do cabeçalho */
+  --papel: #eef1f6;       /* fundo da página */
+  --cartao: #ffffff;
+  --texto: #1d2433;
+  --suave: #5b6578;
+  --destaque: #f2b84b;    /* linha da página ativa e barras laterais */
+  --acao: #0f766e;        /* botões */
+  --acao-escura: #0b5d56;
+  --raio: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Figtree", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--texto);
+  background: var(--papel);
+}
+
+h1, h2, h3 {
+  font-family: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* ---------- Cabeçalho ---------- */
+header {
+  background: var(--tinta);
+  color: #fff;
+  text-align: left;
+  /* alinha o conteúdo com a coluna central (760px) */
+  padding: 3rem max(1.25rem, calc((100% - 760px) / 2)) 5rem;
+}
+
+header h1 {
+  font-size: clamp(1.9rem, 5.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+}
+
+/* ---------- Navegação ---------- */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin-top: 1.75rem;
+}
+
+nav a,
+nav a:visited {
+  color: #c9d3e6;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.35rem 0;
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+nav a:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+
+nav a.ativo {
+  color: #fff;
+  font-weight: 600;
+  border-bottom-color: var(--destaque);
+}
+
+/* ---------- Conteúdo ---------- */
+main {
+  max-width: 760px;
+  margin: -2.5rem auto 3rem;      /* sobrepõe-se ao cabeçalho */
+  padding: 2rem 2rem 2.25rem;
+  background: var(--cartao);
+  border-radius: var(--raio);
+  box-shadow: 0 10px 30px rgba(18, 35, 63, 0.12);
+  position: relative;
+}
+
+main h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+main p {
+  margin: 0 0 1rem;
+  max-width: 65ch;
+  color: var(--suave);
+}
+
+/* Listas (Formação, Experiência, Competências) */
+main ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+main li {
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.75rem;
+  background: var(--papel);
+  border-left: 4px solid var(--destaque);
+  border-radius: 0 8px 8px 0;
+}
+
+main li strong {
+  color: var(--tinta);
+}
+
+/* Opcional: <ul class="chips"> para mostrar competências em etiquetas */
+main ul.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+main ul.chips li {
+  margin: 0;
+  padding: 0.4rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--tinta);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ---------- Botão de download ---------- */
+.botao,
+.botao:visited {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.4rem;
+  background: var(--acao);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.botao:hover {
+  background: var(--acao-escura);
+  transform: translateY(-1px);
+}
+
+/* ---------- Compatibilidade com a versão antiga (details/CV) ---------- */
+.cv summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  background: var(--tinta);
+  color: #fff;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+}
+.cv summary::-webkit-details-marker { display: none; }
+.cv summary:hover { background: #1d3a66; }
+.cv-conteudo { margin-top: 1rem; }
+.cv-conteudo h3 {
+  border-bottom: 2px solid var(--destaque);
+  padding-bottom: 0.2rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+/* ---------- Acessibilidade ---------- */
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--destaque);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+/* ---------- Telemóvel ---------- */
+@media (max-width: 520px) {
+  header { padding-bottom: 4rem; }
+  main { margin-inline: 0.75rem; padding: 1.5rem 1.25rem; }
+  nav { gap: 0.25rem 1.1rem; }
+}
